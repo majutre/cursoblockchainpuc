@@ -1,0 +1,6 @@
+If (condição) {
+  //caso seja TRUE
+  } 
+  else { 
+  //caso seja FALSE
+  }
