@@ -46,7 +46,70 @@ contract PrestaServico {
     
     function aplicaMulta(uint256 mesesRestantes, uint256 percentual) public{
         require(mesesRestantes<30, "Período de contrato inválido");
-        for (uint i=1; i<mesesRestantes; i++) {
+        for (uint i=1; i<mesesRestantes; i++) {pragma solidity 0.5.12;
+
+//qualquer coisa
+/* seu textão
+bonito
+aqui */
+
+
+contract PrestaServico {
+    string public contratante;
+    string public contratado;
+    uint256 private valor;
+    uint256 constant NumeroMaximoLegaldeAlugueisParaMulta = 3; //REVER
+    address public devedor;
+    mapping (address => uint) public balances;
+    
+    constructor(string memory nomeContratante, string memory nomeContratado, uint256 valorDoContrato) public {
+        contratante = nomeContratante;
+        contratado = nomeContratado; 
+        valor = valorDoContrato;
+        devedor = msg.sender;
+    }
+
+    event Sent(address from, address to, uint amount);
+
+   
+
+    function ValorAtualizado() public view returns (uint256) {
+        return valor;
+    }
+    
+    function simulaMulta (uint256 valorPago) public view returns (uint256 valorMulta) {
+        valorMulta = (valor*30)/100;
+        valorMulta = valorPago-valorMulta;
+        if (valorMulta > (valor*30)/100){
+            valorMulta = (valor*30)/100;
+        }
+        return valorMulta;
+    }
+    function reajusteCtt(uint256 percentualReajuste) public {
+        if (percentualReajuste > 20){
+            percentualReajuste = 20;
+        }
+        uint256 valorDoAcrescimo = 0;
+        valorDoAcrescimo = ((valor*percentualReajuste)/100);
+        valor = valor + valorDoAcrescimo;
+    }
+    
+     function aditamentoValorCtt(uint256 valorCerto) public {
+        valor = valorCerto;
+    }
+      function mint(address receiver, uint amount) public {
+        require(msg.sender == devedor);
+        require(amount < 1);
+        balances[receiver] += amount;
+    }
+   function send(address credor, uint valorCerto) public {
+        require(valorCerto <= balances[msg.sender], "Saldo Insuficiente");
+        balances[msg.sender] -= valorCerto;
+        balances[credor] += valorCerto;
+        emit Sent(msg.sender, credor, valorCerto);
+    }
+}
+
             valor = valor+((valor*percentual)/100);
         }
     }
