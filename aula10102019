@@ -308,3 +308,7 @@ contract Escrow {
     }
 } 
 
+Se a função recebe valor, ela é "payable".
+bool = verdadeiro/falso
+push = "empurra" conteudo para dentro da variável.
+arrays = começam do 0 (primeiro elemento);.
