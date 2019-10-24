@@ -134,5 +134,6 @@ contract TicketERC20 is ERC20Interface, Mortal {
 
 }
 // ^o valor deve ser válido
-    }
-}
+
+
+
