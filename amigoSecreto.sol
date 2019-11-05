@@ -16,7 +16,7 @@ contract AmigoSecreto{
 
   
     function Participar(string memory _data) public{
-        require(emAberto);
+        require(emAberto == true);
 
         dadosParticipantes.push(_data);
         addressParticipantes.push(msg.sender);
@@ -28,7 +28,7 @@ contract AmigoSecreto{
     function announce() public {
         require(msg.sender == dono);
         require(addressParticipantes.length >= 1);
-        require(emAberto);
+        require(emAberto == true);
         emAberto = false;
 
         uint size = addressParticipantes.length;
